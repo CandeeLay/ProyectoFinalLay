@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.template import Template, Context
+from django.template import Template, Context, loader
 
 def home(request):
     return HttpResponse("Holis")
@@ -13,11 +13,13 @@ def prueba(self):
     diccionario = {
         "nombre": nombre,
         "apellido": apellido,
+        "namelist": namelist,
     }
 
-    mihtml = open("C:/Users/Candela/Documents/ProyectoFinalLay/ProyectoFinal/ProyectoFinal/plantillas/template1.html")
-    plantilla = Template(mihtml.read())
-    mihtml.close()
-    micontext = Context()
-    documento = plantilla.render(micontext)
+#    mihtml = open("C:/Users/Candela/Documents/ProyectoFinalLay/ProyectoFinal/ProyectoFinal/plantillas/template1.html")
+#    mihtml = loader.get_template("template.html")
+    plantilla = loader.get_template("template.html")
+#    mihtml.close()
+#    micontext = Context(diccionario)
+    documento = plantilla.render(diccionario)
     return HttpResponse(documento)

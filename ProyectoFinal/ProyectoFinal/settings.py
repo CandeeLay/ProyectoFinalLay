@@ -54,7 +54,7 @@ ROOT_URLCONF = 'ProyectoFinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["C:/Users/Candela/Documents/ProyectoFinalLay/ProyectoFinal/ProyectoFinal/plantillas/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

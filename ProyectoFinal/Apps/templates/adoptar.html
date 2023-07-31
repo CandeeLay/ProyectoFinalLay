@@ -1,0 +1,13 @@
+<div>
+    {% extends 'inicio.html' %}
+    {% load static %}
+
+        {% block contenidoQueCambia %}
+          <p>Adoptar</p>
+          <div class="form">
+            {% block setAdoptar %}
+            {% endblock %}
+          </div>
+        {% endblock %}
+
+</div>

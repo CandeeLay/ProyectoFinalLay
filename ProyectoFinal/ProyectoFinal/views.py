@@ -18,7 +18,7 @@ def prueba(self):
 
 #    mihtml = open("C:/Users/Candela/Documents/ProyectoFinalLay/ProyectoFinal/ProyectoFinal/plantillas/template1.html")
 #    mihtml = loader.get_template("template.html")
-    plantilla = loader.get_template("template.html")
+    plantilla = loader.get_template("template1.html")
 #    mihtml.close()
 #    micontext = Context(diccionario)
     documento = plantilla.render(diccionario)

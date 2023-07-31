@@ -1,0 +1,16 @@
+<div>
+    {% extends 'adoptar.html' %}
+    {% load static %}
+
+    {% block setAdoptar %}
+        <p>Crear Usuario para adoptar</p>
+        <form action="Apps/inicio/"  method="post"> {% csrf_token %}
+            <input placeholder="Nombre" type = "text" name="nombre" required>
+            <input placeholder="Apellido" type = "text" name="apellido" required>
+            <input placeholder="Email" type = "email" name="email" required>
+            <input placeholder="Edad" type = "number" name="edad" required>
+
+            <input type = "submit" value="Enviar">
+        </form>
+    {% endblock %}
+</div>

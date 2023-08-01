@@ -1,0 +1,22 @@
+<div>
+    {% extends 'Adoptar.html' %}
+    {% load static %}
+
+    {% block getAdoptar %}
+        <p>Consultar Usuario para adoptar</p>
+        <form action="{% url 'buscarAdoptar' %}" method="GET">
+            <input placeholder="Nombre" type="text" name="nombre" id="nombre">
+            <input type="submit" value="Buscar">
+
+        </form>
+
+        {% if adoptar %}
+            {% for adoptar in adoptar %}
+                <li> {{adoptar.nombre}} </li>
+                <li> {{adoptar.apellido}} </li>
+                <li> {{adoptar.edad}} </li>
+                <li> {{adoptar.email}} </li>
+            {% endfor %}
+        {% endif %}
+    {% endblock %}
+</div>

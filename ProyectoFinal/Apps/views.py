@@ -1,15 +1,15 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render, redirect
-from Apps.models import adoptar
+from Apps.models import Adoptar
 
 # Create your views here.
 
 def inicio(request):
     return render(request, "inicio.html")
 
-def adoptar(request):
-    return render(request, "adoptar.html")
+def Adoptar(request):
+    return render(request, "Adoptar.html")
 
 def mascotas(request):
     return render(request, "mascotas.html")
@@ -22,7 +22,12 @@ def accesorios(request):
 
 def setAdoptar(request):
     if request.method == 'POST':
-        adoptar = adoptar(nombre=request.POST["nombre"], apellido=request.POST["apellido"], edad=request.POST["edad"], email=request.POST["email"])
+        adoptar = Adoptar(
+            nombre=request.POST["nombre"],
+            apellido=request.POST["apellido"],
+            edad=request.POST["edad"],
+            email=request.POST["email"]
+        )
         adoptar.save()
-        return redirect("Apps/inicio.html")
+        return redirect("inicio")  # Correct the redirect URL to 'inicio'
     return render(request, "setAdoptar.html")

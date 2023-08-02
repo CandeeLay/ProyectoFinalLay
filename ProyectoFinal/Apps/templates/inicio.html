@@ -9,8 +9,8 @@
     <link href="{% static 'Apps/css/cande.css'%}" rel="stylesheet"/>
     <title>Inicio | Apps</title>
 </head>
-<body style="background-color:darkcyan;">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top bg-dark-subtle" id="mainNav">
+<body style="background-color:rgb(235, 197, 233);">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top bg-dark" id="mainNav">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="#page-top">Huellitas Felices</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,6 +23,7 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'adopcion' %}">Dar en adopcion</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'mascotas' %}">Mascotas</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'accesorios' %}">Accesorios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}">{{user.username}}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">Logout</a></li>
                 </ul>
             </div>

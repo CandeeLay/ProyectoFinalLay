@@ -2,19 +2,21 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render, redirect
 from Apps.models import Adoptar
-from Apps.forms import formAdoptar
+from Apps.forms import formAdoptar, useredit
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
-
+@login_required
 def inicio(request):
     return render(request, "inicio.html")
 
 def adoptar(request):
-    Adoptar = Adoptar.objects.all()
-    return render(request, "Adoptar.html", {"Adoptar": Adoptar})
+    return render(request, "Adoptar.html")
 
+@login_required
 def mascotas(request):
     return render(request, "mascotas.html")
 
@@ -98,8 +100,29 @@ def loginweb(request):
 def registro(request):
     if request.method == "POST":
         userCreate = UserCreationForm(request.POST)
-        if userCreate is not None:
+        if userCreate is not None:  
             userCreate.save()
-            return render(request, 'login.html')
+            return redirect('login.html')
     else:
         return render(request, 'registro.html')
+
+@login_required
+def perfilview(request):
+    return render(request, 'Perfil/perfil.html',)
+
+@login_required
+def editarPerfil(request):
+    usuario = request.user
+    user_basic_info = User.objects.get(id = usuario.id)
+    if request.method == "POST":
+        form = useredit(request.POST, instance = usuario)
+        if form.is_valid():
+            user_basic_info.username = form.cleaned_data.get('username')
+            user_basic_info.email = form.cleaned_data.get('email')
+            user_basic_info.first_name = form.cleaned_data.get('first_name')
+            user_basic_info.last_name = form.cleaned_data.get('last_name')
+            user_basic_info.save()
+            return render(request, 'Perfil/perfil.html')
+        else:
+            form = useredit(initial= {'username': usuario.username, "email": usuario.email, "first_name": usuario.first_name, "last_name": usuario.last_name})
+            return render(request, "Perfil/editarPerfil", {"form": form})

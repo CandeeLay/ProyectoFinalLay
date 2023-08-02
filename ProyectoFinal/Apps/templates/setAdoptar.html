@@ -3,7 +3,7 @@
     {% load static %}
 
     {% block setAdoptar %}
-        <p>Crear Usuario para adoptar</p>
+        <p>Complete con sus datos para continuar</p>
         <form action="{% url 'setAdoptar' %}" method="post">{% csrf_token %}
             <table>
                 {{ miFormulario.as_table }}

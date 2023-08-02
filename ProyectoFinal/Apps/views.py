@@ -3,6 +3,8 @@ from django.template import loader
 from django.shortcuts import render, redirect
 from Apps.models import Adoptar
 from Apps.forms import formAdoptar
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 
@@ -10,7 +12,8 @@ def inicio(request):
     return render(request, "inicio.html")
 
 def adoptar(request):
-    return render(request, "Adoptar.html")
+    Adoptar = Adoptar.objects.all()
+    return render(request, "Adoptar.html", {"Adoptar": Adoptar})
 
 def mascotas(request):
     return render(request, "mascotas.html")
@@ -56,3 +59,38 @@ def buscarAdoptar(request):
     else:
         respuesta = "No se enviaron datos"
     return  HttpResponse(respuesta)
+
+def leerAdoptar(request):
+    Adoptar = Adoptar.objects.all()
+    return render(request, "Adoptar.html", {"Adoptar": Adoptar})
+
+def editarAdoptar(request, nombre_Adoptar):
+    adoptar = Adoptar.objects.get(nombre = nombre_Adoptar)
+
+    if request.method == 'POST':
+        miFormulario = formAdoptar(request.POST)
+        if miFormulario.is_valid():
+            data = miFormulario.cleaned_data
+            
+            adoptar.nombre = data['nombre']
+            adoptar.apellido = data['apellido']
+            adoptar.edad = data['edad']
+            adoptar.email = data['email']
+            adoptar.save()
+            miFormulario = formAdoptar()
+            Adoptar = Adoptar.objects.all()
+            return render(request, "setAdoptar.html", {"miFormulario":miFormulario, "Adoptar":Adoptar})
+    else:
+        miFormulario = formAdoptar()
+    return render(request, "editarAdoptar.html", {"miFormulario":miFormulario})
+
+def loginweb(request):
+    if request.method == "POST":
+        user = authenticate(username = request.POST['usuario'], password = request.POST['contraseña'])
+        if user is not None:
+            login(request, user)
+            return HttpResponse("inicio.html")
+        else:
+            return render(request, "login.html", {'error': 'Usuario o contraseña incorrecto'})
+    else:
+        return render(request, "login.html")

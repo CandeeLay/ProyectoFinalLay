@@ -10,4 +10,6 @@ urlpatterns = [
     path('setAdoptar/', setAdoptar, name="setAdoptar"),
     path('getAdoptar/', getAdoptar, name="getAdoptar"),
     path('buscarAdoptar/', buscarAdoptar, name="buscarAdoptar"),
+    path('editarAdoptar/<nombre_Adoptar>', editarAdoptar, name="editarAdoptar"),
+    path('login/', loginweb, name="login"),
 ]

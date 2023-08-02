@@ -89,7 +89,7 @@ def loginweb(request):
         user = authenticate(username = request.POST['usuario'], password = request.POST['contraseña'])
         if user is not None:
             login(request, user)
-            return HttpResponse("inicio.html")
+            return render(request, "inicio.html")
         else:
             return render(request, "login.html", {'error': 'Usuario o contraseña incorrecto'})
     else:

@@ -94,3 +94,12 @@ def loginweb(request):
             return render(request, "login.html", {'error': 'Usuario o contraseña incorrecto'})
     else:
         return render(request, "login.html")
+    
+def registro(request):
+    if request.method == "POST":
+        userCreate = UserCreationForm(request.POST)
+        if userCreate is not None:
+            userCreate.save()
+            return render(request, 'login.html')
+    else:
+        return render(request, 'registro.html')

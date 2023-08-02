@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="{% static 'Apps/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static "Apps/css/cande.css" %}" rel="stylesheet"/>
+    <title>Registro en Huellitas Felices</title>
+</head>
+<body>
+    <div class="containerForm"> 
+        <form action="" method="POST" class="formLogin"> {% csrf_token %}
+            <h3 style="color: rgb(0, 0, 0); font-weight:bold; margin-bottom:30px; display: flex; justify-content: center; align-items: center;">REGRISTRO DE HUELLITAS FELICES</h3>
+            <div>
+                <input name="username" type="text" placeholder="Usuario" class="inputLogin">
+            </div>
+            <div>
+                <input name="password1" type="password" placeholder="Contraseña" class="inputLogin">
+            </div>
+            <div>
+                <input name="password2" type="password" placeholder="Confirmar Contraseña" class="inputLogin">
+            </div>
+            <div>
+                <button class="btn btn-dark" type="submit">Registrar</buttom>
+            </div>
+            <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesion</a></p>
+        </form>
+
+    </div>
+</body>
+</html>

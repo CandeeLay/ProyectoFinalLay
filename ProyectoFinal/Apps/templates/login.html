@@ -12,7 +12,7 @@
 <body>
     <div class="containerForm"> 
         <form action="" method="POST" class="formLogin"> {% csrf_token %}
-            <h3 style="color: grey; font-weight:bold; margin-bottom:30px; display: flex; justify-content: center; align-items: center;">LOGIN HUELLITAS FELICES</h3>
+            <h3 style="color: rgb(0, 0, 0); font-weight:bold; margin-bottom:30px; display: flex; justify-content: center; align-items: center;">LOGIN HUELLITAS FELICES</h3>
             <div>
                 <input name="usuario" type="text" placeholder="Usuario" class="inputLogin">
             </div>
@@ -25,7 +25,7 @@
             {% if error %}
                 <p style="color: red;">{{error}}</p>
             {% endif %}
-            <p>¿No tienes cuenta? <a href="">Registrate aqui</a></p>
+            <p>¿No tienes cuenta? <a href="{% url 'registro' %}">Registrate aqui</a></p>
         </form>
 
     </div>

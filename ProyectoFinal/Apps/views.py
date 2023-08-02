@@ -2,9 +2,9 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render, redirect
 from Apps.models import Adoptar
-from Apps.forms import formAdoptar, useredit
+from Apps.forms import formAdoptar, useredit, changeform
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
@@ -100,9 +100,11 @@ def loginweb(request):
 def registro(request):
     if request.method == "POST":
         userCreate = UserCreationForm(request.POST)
-        if userCreate is not None:  
+        if userCreate.is_valid():
             userCreate.save()
-            return redirect('login.html')
+            return redirect('login')
+        else:
+            return render(request, 'registro.html')
     else:
         return render(request, 'registro.html')
 
@@ -126,3 +128,16 @@ def editarPerfil(request):
         else:
             form = useredit(initial= {'username': usuario.username, "email": usuario.email, "first_name": usuario.first_name, "last_name": usuario.last_name})
             return render(request, "Perfil/editarPerfil", {"form": form})
+
+@login_required
+def changePass(request):
+    usuario = request.user
+    if request.method == "POST":
+        form = changePass(data = request.POST, user = usuario)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            return render(request, "inicio.html")
+        else:
+            form = changeform(user = usuario)
+            return render(request, 'changePass.html', {"form": form})

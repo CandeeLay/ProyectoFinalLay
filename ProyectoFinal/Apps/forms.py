@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 
 class formAdoptar(forms.Form):
@@ -26,4 +26,14 @@ class useredit(UserChangeForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name'] #'password'
+        help_texts = {k:"" for k in fields}
+
+class changeform(PasswordChangeForm):
+    old_password = forms.CharField(label = "", widget= forms.PasswordInput(attrs={"placeholder": "Old password"}))
+    new_password = forms.CharField(label = "", widget= forms.PasswordInput(attrs={"placeholder": "New password"}))
+    new_password2 = forms.CharField(label = "", widget= forms.PasswordInput(attrs={"placeholder": "Confirmation password"}))
+
+    class Meta:
+        model = User
+        fields = ['old_password', 'new_password', 'new_password2'] 
         help_texts = {k:"" for k in fields}

@@ -17,4 +17,5 @@ urlpatterns = [
     path('Logout/', LogoutView.as_view(template_name = 'login.html'), name="Logout"),
     path('perfil/', perfilview, name="perfil"),
     path('editarPerfil/', editarPerfil, name="editarPerfil"),
+    path('changePass/', changePass, name="changePass"),
 ]

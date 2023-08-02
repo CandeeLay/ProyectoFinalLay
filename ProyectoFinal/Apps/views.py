@@ -135,9 +135,14 @@ def changePass(request):
     if request.method == "POST":
         form = changePass(data = request.POST, user = usuario)
         if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)
-            return render(request, "inicio.html")
-        else:
-            form = changeform(user = usuario)
-            return render(request, 'changePass.html', {"form": form})
+            if request.POST['new_password1'] == request.POST['new_password2']:
+                user = form.save()
+                update_session_auth_hash(request, user)
+                return HttpResponse("Las contraseñas no coinciden")
+        return render(request, "inicio.html")
+    else:
+        form = changeform(user = usuario)
+        return render(request, 'changePass.html', {"form": form})
+    
+def editAvatar(request):
+    pass

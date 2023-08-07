@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -31,3 +32,6 @@ class accesorios(models.Model):
         return f"producto: {self.producto} - descripcion: {self.descripcion} - precio: {self.precio}"
     
     
+class Avatar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='avatares', null = True, blank = True)

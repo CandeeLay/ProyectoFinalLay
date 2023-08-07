@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render, redirect
-from Apps.models import Adoptar
-from Apps.forms import formAdoptar, useredit, changeform
+from Apps.models import Adoptar, Avatar
+from Apps.forms import formAdoptar, useredit, changeform, Avatarform
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -145,4 +145,23 @@ def changePass(request):
         return render(request, 'changePass.html', {"form": form})
     
 def editAvatar(request):
-    pass
+    if request.method == "POST":
+        form = Avatarform(request.POST, request.FILES)
+        print(form)
+        print(form.is_valid())
+        if form.is_valid():
+            user = User.objects.get(username = request.user)
+            avatar = Avatar(user = user, image = form.cleaned_data['avatar'], id = request.user.id)
+            avatar.save()
+            avatar = Avatar.objects.filter(user = request.user.id)
+            try:
+                avatar = avatar[0].image.url
+            except:
+                avatar = None
+            return render(request, "inicio.html", {"avatar": avatar})
+    else:
+        try:
+            avatar = Avatar.objects.filter(user = request.user.id)
+            form = Avatarform()
+        except:
+            form = Avatarform()

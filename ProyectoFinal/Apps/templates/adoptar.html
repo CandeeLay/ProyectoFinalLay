@@ -3,7 +3,13 @@
     {% load static %}
 
         {% block contenidoQueCambia %}
-          <p>¿Quieres adoptar?</p>
+          <h1>¿Quieres adoptar?</h1>
+          <h1> </h1>
+          <p>
+            Para poder adoptar, necesitamos que llenes nuestro pequeño formulario
+          </p>
+          <p>Llenalo <a href="{% url 'setAdoptar' %}">aqui</a></p>
+
           <div class="formSetAdoptar">
             {% block setAdoptar %}
             {% endblock %}

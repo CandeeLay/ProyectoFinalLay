@@ -20,16 +20,22 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="{% url 'adoptar' %}">Adoptar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'adopcion' %}">Dar en adopcion</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'mascotas' %}">Mascotas</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'accesorios' %}">Accesorios</a></li>
-                    <li class="nav-item"><a class="nav-link" href=>{{avatar}}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}">{{user.username}}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">Logout</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://www.noticiali.com/wp-content/uploads/2018/04/22-PETS-1.jpg" alt="..." /></div>
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">Huellitas Felices</h1>
+            <p>Somos una pequeña familia dedicada a rescatar animalitos de la calle y asi poder encontrarles un hogar. Para donaciones solicita nuestro alias de mercado pago</p>
+            <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=+541126254633&text=Hola%2C+te+hablo+desde+tu+pagina+%22Huellitas+felices%22.+%C2%BFPodrias+darme+mas+informacion%3F+%F0%9F%98%84">¡Contactanos!</a>
+        </div>
+    </div>
     <div class="contenido">
         {% block contenidoQueCambia %}
         {% endblock %}

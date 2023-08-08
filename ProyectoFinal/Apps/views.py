@@ -158,7 +158,7 @@ def editAvatar(request):
                 avatar = avatar[0].image.url
             except:
                 avatar = None
-            return render(request, "inicio.html", {"avatar": avatar})
+            return render(request, 'editAvatar.html', {"avatar": avatar})
     else:
         try:
             avatar = Avatar.objects.filter(user = request.user.id)

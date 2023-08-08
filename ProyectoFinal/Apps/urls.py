@@ -16,7 +16,7 @@ urlpatterns = [
     path('registro/', registro, name="registro"),
     path('Logout/', LogoutView.as_view(next_page='login'), name="Logout"),
     path('perfil/', perfilview, name="perfil"),
-    path('editarPerfil/', editarPerfil, name="editarPerfil"),
-    path('changePass/', changePass, name="changePass"),
-    path('avatar/', editAvatar, name="editAvatar"),
+    path('perfil/editarPerfil/', editarPerfil, name="editarPerfil"),
+    path('perfil/changePass/', changePass, name="changePass"),
+    path('perfil/editAvatar/', editAvatar, name="editAvatar"),
 ]
